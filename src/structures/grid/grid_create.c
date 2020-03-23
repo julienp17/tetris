@@ -10,9 +10,9 @@
 #include "grid.h"
 #include "my.h"
 
-static cell_t **grid_create_cells(uint width, uint height);
+static cell_t **grid_create_cells(uint height, uint width);
 
-grid_t *grid_create(uint width, uint height)
+grid_t *grid_create(uint height, uint width)
 {
     grid_t *grid = NULL;
 
@@ -23,13 +23,13 @@ grid_t *grid_create(uint width, uint height)
     }
     grid->width = width;
     grid->height = height;
-    grid->cells = grid_create_cells(width, height);
+    grid->cells = grid_create_cells(height, width);
     if (grid->cells == NULL)
         return (NULL);
     return (grid);
 }
 
-static cell_t **grid_create_cells(uint width, uint height)
+static cell_t **grid_create_cells(uint height, uint width)
 {
     cell_t **cells = NULL;
 
