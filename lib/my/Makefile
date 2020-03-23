@@ -7,9 +7,17 @@
 
 CC 		= 	gcc
 
-SRC		=	my_putchar.c \
+SRC		=	my_count_char.c \
+			my_count_until_sep.c \
+			my_free_str_array.c \
+			my_putchar.c \
 			my_putstr.c \
 			my_puterr.c \
+			my_strcpy.c \
+			my_str_to_word_array.c \
+			my_strdup.c \
+			my_strtol.c \
+			my_strlen.c \
 
 OBJ		=	$(SRC:.c=.o)
 
