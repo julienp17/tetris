@@ -9,11 +9,30 @@
 #include "grid.h"
 #include "my.h"
 
+static void grid_print_border(uint width);
+
 void grid_print(grid_t *grid)
 {
+    grid_print_border(grid->width);
     for (uint row = 0 ; row < grid->height ; row++) {
-        for (uint col = 0 ; col < grid->width ; col++)
-            my_putchar(grid->cells[row][col] + '0');
-        my_putchar('\n');
+        addch('|');
+        for (uint col = 0 ; col < grid->width ; col++) {
+            attron(COLOR_PAIR(grid->cells[row][col]));
+            addch(' ');
+            attroff(COLOR_PAIR(grid->cells[row][col]));
+        }
+        addch('|');
+        addch('\n');
     }
+    grid_print_border(grid->width);
+    refresh();
+}
+
+static void grid_print_border(uint width)
+{
+    addch('+');
+    for (uint col = 0 ; col < width ; col++)
+        addch('-');
+    addch('+');
+    addch('\n');
 }
