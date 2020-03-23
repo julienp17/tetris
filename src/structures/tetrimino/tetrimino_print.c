@@ -10,8 +10,11 @@
 
 void tetrimino_print(tetrimino_t *tetrimino)
 {
-    for (uint row = 0 ; tetrimino->shape[row] ; row++) {
-        for (uint col = 0 ; col < tetrimino->width ; col++) {
+    uchar square_size = 0;
+
+    square_size = MAX(tetrimino->height, tetrimino->width);
+    for (uint row = 0 ; row < square_size ; row++) {
+        for (uint col = 0 ; col < square_size ; col++) {
             if (tetrimino->shape[row][col] == tetrimino->color) {
                 attron(COLOR_PAIR(tetrimino->color));
                 addch(' ');
@@ -22,4 +25,5 @@ void tetrimino_print(tetrimino_t *tetrimino)
         }
         addch('\n');
     }
+    refresh();
 }
