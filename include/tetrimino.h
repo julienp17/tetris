@@ -9,6 +9,7 @@
     #define TETRIMINO_H_
 
     #include "tetrimino_struct.h"
+    #include "orientation_enum.h"
 
     #define MAX(nb1, nb2) ((nb1 > nb2 ? nb1 : nb2))
     #define SQUARE_CHAR     '*'
@@ -18,5 +19,9 @@
     tetrimino_t *tetrimino_create_from_file(char const *filename);
     void tetrimino_destroy(tetrimino_t *tetrimino);
 
+    shape_t tetrimino_shape_create(uint width, uint height);
+    shape_t tetrimino_shape_dup(tetrimino_t const *tetrimino);
+
+    void tetrimino_rotate(tetrimino_t *tetrimino, orientation_t orientation);
     void tetrimino_print(tetrimino_t *tetrimino);
 #endif
