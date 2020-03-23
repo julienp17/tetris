@@ -15,7 +15,8 @@
 
     typedef unsigned  int uint;
 
-    tetrimino_t *tetrimino_create(char const *name, shape_t shape);
     tetrimino_t *tetrimino_create_from_file(char const *filename);
+    void tetrimino_destroy(tetrimino_t *tetrimino);
+
     void tetrimino_print(tetrimino_t *tetrimino);
 #endif

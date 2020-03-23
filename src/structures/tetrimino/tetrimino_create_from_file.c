@@ -33,17 +33,15 @@ tetrimino_t *tetrimino_create_from_file(char const *filename)
     tetrimino->color  = my_strtol(file_lines[0], &(file_lines[0]));
     tetrimino->shape  = tetrimino_shape_create(tetrimino);
     tetrimino_shape_fill_from_lines(tetrimino, file_lines + 1);
-    // my_free_str_array(file_lines);
     return (tetrimino->shape == NULL ? NULL : tetrimino);
 }
-#include <stdio.h>
+
 static shape_t tetrimino_shape_create(tetrimino_t *tetrimino)
 {
     shape_t shape = NULL;
     uchar nb_rows = 0;
 
     nb_rows = MAX(tetrimino->height, tetrimino->width);
-    printf("%d\n", nb_rows);
     shape = malloc(sizeof(uchar *) * (nb_rows + 1));
     if (shape == NULL) {
         my_puterr("Couldn't allocate memory for tetrimino shape array.\n");
