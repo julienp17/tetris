@@ -19,11 +19,11 @@ char *get_file_buffer(char const *filepath)
     char *buffer = malloc(sizeof(char) * (file_size + 1));
 
     if ((fd = open(filepath, O_RDONLY)) == -1) {
-        perror("open");
+        perror(filepath);
         return (NULL);
     }
     if (read(fd, buffer, file_size) == -1) {
-        perror("read");
+        perror(filepath);
         return (NULL);
     }
     buffer[file_size] = '\0';
