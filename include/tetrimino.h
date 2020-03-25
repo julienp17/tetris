@@ -8,11 +8,20 @@
 #ifndef TETRIMINO_H_
     #define TETRIMINO_H_
 
-    #include "tetrimino_struct.h"
     #include "orientation_enum.h"
 
     #define MAX(nb1, nb2) ((nb1 > nb2 ? nb1 : nb2))
     #define SQUARE_CHAR     '*'
+
+    typedef unsigned char uchar;
+    typedef unsigned char **shape_t;
+    typedef struct tetrimino {
+        char *name;
+        uchar height;
+        uchar width;
+        uchar color;
+        shape_t shape;
+    } tetrimino_t;
 
     typedef unsigned  int uint;
 
