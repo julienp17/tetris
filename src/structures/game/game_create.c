@@ -9,7 +9,7 @@
 #include "game.h"
 #include "my.h"
 
-game_t *game_create(uint height, uint width)
+game_t *game_create(uint height, uint width, int level)
 {
     game_t *game = NULL;
 
@@ -20,8 +20,11 @@ game_t *game_create(uint height, uint width)
     }
     game->grid = grid_create(height, width);
     game->tetriminos = get_tetriminos_from_dir(TETRIMINOS_DIR_PATH);
+    game->info = game_info_create(level, game->tetriminos);
     game->clock = 0;
-    if (game->grid == NULL || game->tetriminos == NULL || game->clock == -1)
+    if (!game->grid || !game->tetriminos || !game->info || game->clock < 0)
         return (NULL);
+    game->current_tetrimino= game->tetriminos[rand()%game->info->nb_tetriminos];
+    game->next_tetrimino = game->tetriminos[rand() % game->info->nb_tetriminos];
     return (game);
 }
