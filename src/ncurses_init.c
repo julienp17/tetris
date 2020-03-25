@@ -25,6 +25,7 @@ int ncurses_init(void)
     noecho();
     cbreak();
     start_color();
+    nodelay(stdscr, TRUE);
     keypad(stdscr, TRUE);
     ncurses_init_pairs();
     return (0);
