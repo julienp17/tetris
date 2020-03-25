@@ -19,10 +19,9 @@ game_t *game_create(uint height, uint width)
         return (NULL);
     }
     game->grid = grid_create(height, width);
-    if (game->grid == NULL)
-        return (NULL);
     game->tetriminos = get_tetriminos_from_dir(TETRIMINOS_DIR_PATH);
-    if (game->tetriminos == NULL)
+    game->clock = 0;
+    if (game->grid == NULL || game->tetriminos == NULL || game->clock == -1)
         return (NULL);
     return (game);
 }
