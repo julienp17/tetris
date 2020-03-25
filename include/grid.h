@@ -18,5 +18,5 @@
 
     grid_t *grid_create(uint height, uint width);
     void grid_destroy(grid_t *grid);
-    void grid_print(grid_t *grid);
+    void grid_display(grid_t *grid, int y, int x);
 #endif

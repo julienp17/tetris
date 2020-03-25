@@ -12,6 +12,7 @@
 
     #define MAX(nb1, nb2) ((nb1 > nb2 ? nb1 : nb2))
     #define SQUARE_CHAR     '*'
+    #define TETRIMINOS_DIR_PATH     "tetriminos/"
 
     typedef unsigned char uchar;
     typedef unsigned char **shape_t;
@@ -32,5 +33,7 @@
     shape_t tetrimino_shape_dup(tetrimino_t const *tetrimino);
 
     void tetrimino_rotate(tetrimino_t *tetrimino, orientation_t orientation);
-    void tetrimino_print(tetrimino_t *tetrimino);
+    void tetrimino_display(tetrimino_t *tetrimino, int y, int x);
+
+    tetrimino_t **get_tetriminos_from_dir(char const *dir_path);
 #endif
