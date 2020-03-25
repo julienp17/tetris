@@ -15,6 +15,7 @@
 
     int my_strtol(char *str, char **endptr);
     int my_strcmp(char const *s1, char const *s2);
+    int my_atoi(char const *str);
     unsigned int my_count_char(char const *str, char const to_count);
     unsigned int my_count_until_sep(char const *str, char const sep);
     unsigned int my_strlen(char const *str);
