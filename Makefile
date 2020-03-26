@@ -14,21 +14,37 @@ OBJ_M		=	$(MAIN:.c=.o)
 SRC			=	$(addprefix $(SRC_D), $(SRC_F))
 OBJ			=	$(SRC:.c=.o)
 SRC_D		=	src/
-SRC_F		=
+SRC_F		=	tetris.c \
+				ncurses_init.c \
+				clear_zone.c \
+				get_tetriminos_from_dir.c \
+				display_next_tetrimino.c \
+				display_box.c \
+				display_game_info.c \
+				file_reading/get_file_buffer.c \
+				file_reading/get_file_lines.c \
+				file_reading/get_file_size.c \
+				file_reading/get_nb_files_in_dir.c \
+				structures/game/game_create.c \
+				structures/game/game_info_create.c \
+				structures/game/game_destroy.c \
+				structures/game/game_display.c \
+				structures/grid/grid_create.c \
+				structures/grid/grid_destroy.c \
+				structures/grid/grid_display.c \
+				structures/tetrimino/tetrimino_create_from_file.c \
+				structures/tetrimino/tetrimino_destroy.c \
+				structures/tetrimino/tetrimino_display.c \
+				structures/tetrimino/tetrimino_rotate.c \
+				structures/tetrimino/tetrimino_shape_create.c \
+				structures/tetrimino/tetrimino_shape_dup.c \
 
 SRC_UT		=	$(addprefix $(SRC_UT_D), $(SRC_UT_F))
 OBJ_UT		=	$(SRC_UT:.c=.o)
 SRC_UT_D	=	tests/
-SRC_UT_F	=	test_get_next_line.c \
-				test_coord_is_valid.c \
-				test_check_args.c \
-				tests_grid/test_grid_print.c \
-				tests_grid/test_grid_has_boats.c \
-				tests_grid/test_grid_place_boat.c \
-				tests_grid/test_grid_create_from_file.c \
-				tests_format_parsing/test_format_is_valid.c \
+SRC_UT_F	=
 
-INC			=	-I./include
+INC			=	-I./include -I./include/enumerations -I./include/structures
 
 CFLAGS		=	-W -Wall -Wextra -Werror $(INC) $(LDFLAGS)
 
