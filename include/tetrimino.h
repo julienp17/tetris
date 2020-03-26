@@ -8,6 +8,8 @@
 #ifndef TETRIMINO_H_
     #define TETRIMINO_H_
 
+    #include <stdbool.h>
+    #include "grid.h"
     #include "orientation_enum.h"
 
     #define MAX(nb1, nb2) ((nb1 > nb2 ? nb1 : nb2))
@@ -28,6 +30,7 @@
 
     tetrimino_t *tetrimino_create_from_file(char const *filename);
     void tetrimino_destroy(tetrimino_t *tetrimino);
+    bool tetrimino_can_fall(tetrimino_t *tetrimino, grid_t *grid);
 
     shape_t tetrimino_shape_create(uint width, uint height);
     shape_t tetrimino_shape_dup(tetrimino_t const *tetrimino);

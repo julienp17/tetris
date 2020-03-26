@@ -9,8 +9,10 @@
 #include <time.h>
 #include "tetris.h"
 
-int main(void)
+int main(int ac, char **av)
 {
+    if (print_help(ac, av))
+        return (0);
     srand(time(NULL));
     tetris();
     return (0);

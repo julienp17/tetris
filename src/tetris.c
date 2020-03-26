@@ -14,6 +14,7 @@
 
 int game_loop(game_t *game);
 int tetrimino_fall(tetrimino_t *tetrimino, clock_t *game_clock);
+void refresh_game(game_t *game);
 
 int tetris(void)
 {
@@ -32,20 +33,28 @@ int tetris(void)
 
 int game_loop(game_t *game)
 {
-    grid_display(game->grid, 0, 0);
-    display_next_tetrimino(game->next_tetrimino, 0, 20);
-    move(1, game->grid->width / 2);
-    tetrimino_display(game->current_tetrimino, 1, game->grid->width / 2);
-    refresh();
-    while (1) {
+
+
+    refresh_game(game);
+    while (tetrimino_can_fall(game->current_tetrimino, game->grid)) {
         display_game_info(game->info, game->clock, 10, 20);
         tetrimino_fall(game->current_tetrimino, &(game->clock));
+        refresh();
         // if (tetrimino_move(current_tetrimino))
         //     game_display(game);
     }
     game->current_tetrimino = game->next_tetrimino;
     game->next_tetrimino = game->tetriminos[rand() % game->info->nb_tetriminos];
     return (0);
+}
+
+void refresh_game(game_t *game)
+{
+    grid_display(game->grid, 0, 0);
+    display_next_tetrimino(game->next_tetrimino, 0, 20);
+    move(1, game->grid->width / 2);
+    tetrimino_display(game->current_tetrimino, 1, game->grid->width / 2);
+    refresh();
 }
 
 int tetrimino_fall(tetrimino_t *tetrimino, clock_t *game_clock)

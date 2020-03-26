@@ -21,6 +21,7 @@ SRC_F		=	tetris.c \
 				display_next_tetrimino.c \
 				display_box.c \
 				display_game_info.c \
+				options/print_help.c \
 				file_reading/get_file_buffer.c \
 				file_reading/get_file_lines.c \
 				file_reading/get_file_size.c \
@@ -35,6 +36,7 @@ SRC_F		=	tetris.c \
 				structures/tetrimino/tetrimino_create_from_file.c \
 				structures/tetrimino/tetrimino_destroy.c \
 				structures/tetrimino/tetrimino_display.c \
+				structures/tetrimino/tetrimino_can_fall.c \
 				structures/tetrimino/tetrimino_rotate.c \
 				structures/tetrimino/tetrimino_shape_create.c \
 				structures/tetrimino/tetrimino_shape_dup.c \
