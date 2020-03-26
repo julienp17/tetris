@@ -1,0 +1,31 @@
+/*
+** EPITECH PROJECT, 2020
+** PSU_tetris_2019
+** File description:
+** Displays a box
+*/
+
+#include <ncurses.h>
+
+static void display_border(int y, int x, int width);
+
+void display_box(int y, int x, int height, int width)
+{
+    display_border(y, x, width);
+    for (int i = 0 ; i < height ; i++) {
+        mvaddch(y + 1 + i, x, '|');
+        mvaddch(y + 1 + i, x + 1 + width, '|');
+    }
+    display_border(y + height, x, width);
+    move(y, x);
+}
+
+static void display_border(int y, int x, int width)
+{
+    move(y, x);
+    addch('+');
+    for (int i = 0 ; i < width ; i++)
+        addch('-');
+    addch('+');
+    move(y, x);
+}
