@@ -10,13 +10,13 @@
 
     #include <stdbool.h>
     #include "vector.h"
-    #include "grid.h"
     #include "orientation_enum.h"
 
     #define MAX(nb1, nb2) ((nb1 > nb2 ? nb1 : nb2))
     #define SQUARE_CHAR     '*'
     #define TETRIMINOS_DIR_PATH     "tetriminos/"
 
+    typedef unsigned  int uint;
     typedef unsigned char uchar;
     typedef unsigned char **shape_t;
     typedef struct tetrimino {
@@ -28,11 +28,8 @@
         shape_t shape;
     } tetrimino_t;
 
-    typedef unsigned  int uint;
-
     tetrimino_t *tetrimino_create_from_file(char const *filename);
     void tetrimino_destroy(tetrimino_t *tetrimino);
-    bool tetrimino_can_fall(tetrimino_t *tetrimino, grid_t *grid);
 
     shape_t tetrimino_shape_create(vec_t size);
     shape_t tetrimino_shape_dup(tetrimino_t const *tetrimino);
