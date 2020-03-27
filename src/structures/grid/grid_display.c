@@ -12,7 +12,7 @@
 
 void grid_display(grid_t *grid)
 {
-    display_box(grid->pos.y - 1, grid->pos.x - 1, grid->size.x, grid->size.y);
+    display_box(grid->pos.y - 1, grid->pos.x - 1, grid->size.y, grid->size.x);
     for (int row = 0 ; row < grid->size.y ; row++) {
         move(grid->pos.y + row, grid->pos.x);
         for (int col = 0 ; col < grid->size.x ; col++) {
