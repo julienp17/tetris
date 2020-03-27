@@ -26,7 +26,7 @@ tetrimino_t *tetrimino_create_from_file(char const *filename)
     file_lines = get_file_lines(filename);
     if (file_lines == NULL)
         return (NULL);
-    tetrimino->name   = my_strdup(filename);
+    tetrimino->name   = get_pretty_filename(my_strdup(filename));
     tetrimino->size.x = my_strtol(file_lines[0], &(file_lines[0]));
     tetrimino->size.y = my_strtol(file_lines[0], &(file_lines[0]));
     tetrimino->square_size = MAX(tetrimino->size.x, tetrimino->size.y);
