@@ -16,7 +16,7 @@ void display_box(int y, int x, int height, int width)
         mvaddch(y + 1 + i, x, '|');
         mvaddch(y + 1 + i, x + 1 + width, '|');
     }
-    display_border(y + height, x, width);
+    display_border(y + height + 1, x, width);
     move(y, x);
 }
 
