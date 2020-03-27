@@ -28,7 +28,11 @@
 
     int tetris(void);
     int ncurses_init(void);
+    int execute_input(tetrimino_t *tetrimino, grid_t *grid);
+
     bool tetrimino_can_fall(tetrimino_t *tetrimino, grid_t *grid);
+    bool tetrimino_can_rotate(tetrimino_t *tetrimino, grid_t *grid);
+    bool tetrimino_can_move(tetrimino_t *tetrimino, grid_t *grid, int offset);
     int tetrimino_move(tetrimino_t *tetrimino, grid_t *grid);
 
     bool print_help(int ac, char **av);
