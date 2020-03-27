@@ -12,15 +12,13 @@
 shape_t tetrimino_shape_dup(tetrimino_t const *tetrimino)
 {
     shape_t shape = NULL;
-    uchar square_size = 0;
 
-    shape = tetrimino_shape_create(tetrimino->width, tetrimino->height);
+    shape = tetrimino_shape_create(tetrimino->size);
     if (shape == NULL)
         return (NULL);
-    square_size = MAX(tetrimino->width, tetrimino->height);
-    for (uint row = 0 ; row < square_size ; row++)
-        for (uint col = 0 ; col < square_size ; col++)
+    for (uint row = 0 ; row < tetrimino->square_size ; row++)
+        for (uint col = 0 ; col < tetrimino->square_size ; col++)
             shape[row][col] = tetrimino->shape[row][col];
-    shape[square_size] = NULL;
+    shape[tetrimino->square_size] = NULL;
     return (shape);
 }

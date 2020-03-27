@@ -8,14 +8,15 @@
 #include <ncurses.h>
 #include "tetrimino.h"
 
-void tetrimino_display(tetrimino_t *tetrimino, int y, int x)
+void tetrimino_display(tetrimino_t *tetrimino)
 {
-    uchar square_size = 0;
+    int y = 0;
+    int x = 0;
 
-    square_size = MAX(tetrimino->height, tetrimino->width);
-    for (uint row = 0 ; row < square_size ; row++) {
+    getyx(stdscr, y, x);
+    for (uint row = 0 ; row < tetrimino->square_size ; row++) {
         move(y + row, x);
-        for (uint col = 0 ; col < square_size ; col++) {
+        for (uint col = 0 ; col < tetrimino->square_size ; col++) {
             if (tetrimino->shape[row][col] == tetrimino->color) {
                 attron(COLOR_PAIR(tetrimino->color));
                 addch(' ');
@@ -25,5 +26,4 @@ void tetrimino_display(tetrimino_t *tetrimino, int y, int x)
             }
         }
     }
-    move(y, x);
 }

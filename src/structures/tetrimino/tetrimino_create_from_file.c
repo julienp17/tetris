@@ -27,10 +27,12 @@ tetrimino_t *tetrimino_create_from_file(char const *filename)
     if (file_lines == NULL)
         return (NULL);
     tetrimino->name   = my_strdup(filename);
-    tetrimino->width  = my_strtol(file_lines[0], &(file_lines[0]));
-    tetrimino->height = my_strtol(file_lines[0], &(file_lines[0]));
+    tetrimino->size.x = my_strtol(file_lines[0], &(file_lines[0]));
+    tetrimino->size.y = my_strtol(file_lines[0], &(file_lines[0]));
+    tetrimino->square_size = MAX(tetrimino->size.x, tetrimino->size.y);
+    tetrimino->pos    = vec(0, 0);
     tetrimino->color  = my_strtol(file_lines[0], &(file_lines[0]));
-    tetrimino->shape=tetrimino_shape_create(tetrimino->width,tetrimino->height);
+    tetrimino->shape  = tetrimino_shape_create(tetrimino->size);
     tetrimino_shape_fill_from_lines(tetrimino, file_lines + 1);
     return (tetrimino->shape == NULL ? NULL : tetrimino);
 }
