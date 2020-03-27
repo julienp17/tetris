@@ -5,22 +5,25 @@
 ** tetris
 */
 
+#include <stdbool.h>
 #include <ncurses.h>
 #include <time.h>
 #include <stdlib.h>
 #include "game.h"
 #include "my.h"
 #include "tetris.h"
+#include "display.h"
 
 int game_loop(game_t *game);
 int tetrimino_fall(tetrimino_t *tetrimino, clock_t *game_clock);
 void refresh_game(game_t *game);
+void put_tetrimino_in_grid(tetrimino_t *tetrimino, grid_t *grid);
 
 int tetris(void)
 {
     game_t *game = NULL;
 
-    game = game_create(20, 10, 1);
+    game = game_create(vec(10, 20), 1);
     if (game == NULL)
         return (-1);
     if (ncurses_init() == -1)
@@ -33,43 +36,49 @@ int tetris(void)
 
 int game_loop(game_t *game)
 {
-
+    bool can_fall = false;
 
     refresh_game(game);
-    while (tetrimino_can_fall(game->current_tetrimino, game->grid)) {
+    can_fall = tetrimino_can_fall(game->current_tetrimino, game->grid);
+    if (can_fall == false)
+        return (-1);
+    while (can_fall) {
         display_game_info(game->info, game->clock, 10, 20);
         tetrimino_fall(game->current_tetrimino, &(game->clock));
-        refresh();
+        can_fall = tetrimino_can_fall(game->current_tetrimino, game->grid);
+        if (can_fall == false)
+            grid_put_tetrimino(game->grid, game->current_tetrimino);
         // if (tetrimino_move(current_tetrimino))
         //     game_display(game);
     }
-    game->current_tetrimino = game->next_tetrimino;
-    game->next_tetrimino = game->tetriminos[rand() % game->info->nb_tetriminos];
     return (0);
 }
 
 void refresh_game(game_t *game)
 {
-    grid_display(game->grid, 0, 0);
+    game->current_tetrimino = game->next_tetrimino;
+    game->next_tetrimino = game->tetriminos[rand() % game->info->nb_tetriminos];
+    game->current_tetrimino->pos.x = game->grid->pos.x + game->grid->size.x / 2;
+    game->current_tetrimino->pos.y = game->grid->pos.y;
+    clear();
+    grid_display(game->grid);
     display_next_tetrimino(game->next_tetrimino, 0, 20);
-    move(1, game->grid->width / 2);
-    tetrimino_display(game->current_tetrimino, 1, game->grid->width / 2);
+    tetrimino_display(game->current_tetrimino);
     refresh();
 }
 
 int tetrimino_fall(tetrimino_t *tetrimino, clock_t *game_clock)
 {
-    int y = 0;
-    int x = 0;
     clock_t sec_elapsed = 0;
 
     sec_elapsed = (clock() / CLOCKS_PER_SEC);
     if ((sec_elapsed - (*game_clock)) >= REFRESH_TIME_SEC) {
         (*game_clock) += REFRESH_TIME_SEC;
-        getyx(stdscr, y, x);
-        clear_zone(y, x, y + tetrimino->height, x + tetrimino->width);
-        move(y + 1, x);
-        tetrimino_display(tetrimino, y + 1, x);
+        clear_zone(tetrimino->pos.y, tetrimino->pos.x,
+                    tetrimino->size.y, tetrimino->size.x);
+        tetrimino->pos.y++;
+        tetrimino_display(tetrimino);
+        refresh();
     }
     return (0);
 }
