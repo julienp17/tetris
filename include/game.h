@@ -25,7 +25,7 @@
         game_info_t *info;
     } game_t;
 
-    game_t *game_create(uint height, uint width, int level);
+    game_t *game_create(vec_t size, int level);
     void game_destroy(game_t *game);
 
     void game_display(game_t *game);

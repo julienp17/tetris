@@ -9,7 +9,7 @@
 #include "game.h"
 #include "my.h"
 
-game_t *game_create(uint height, uint width, int level)
+game_t *game_create(vec_t size, int level)
 {
     game_t *game = NULL;
 
@@ -18,7 +18,7 @@ game_t *game_create(uint height, uint width, int level)
         my_puterr("Couldn't allocate memory for game structure.\n");
         return (NULL);
     }
-    game->grid = grid_create(height, width);
+    game->grid = grid_create(vec(1, 1), size);
     game->tetriminos = get_tetriminos_from_dir(TETRIMINOS_DIR_PATH);
     game->info = game_info_create(level, game->tetriminos);
     game->clock = 0;
