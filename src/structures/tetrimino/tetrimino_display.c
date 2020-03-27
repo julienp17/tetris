@@ -7,6 +7,7 @@
 
 #include <ncurses.h>
 #include "tetrimino.h"
+#include "display.h"
 
 void tetrimino_display(tetrimino_t *tetrimino)
 {
