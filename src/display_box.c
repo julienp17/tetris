@@ -17,15 +17,12 @@ void display_box(int y, int x, int height, int width)
         mvaddch(y + 1 + i, x + 1 + width, '|');
     }
     display_border(y + height + 1, x, width);
-    move(y, x);
 }
 
 static void display_border(int y, int x, int width)
 {
-    move(y, x);
-    addch('+');
+    mvaddch(y, x, '+');
     for (int i = 0 ; i < width ; i++)
         addch('-');
     addch('+');
-    move(y, x);
 }
