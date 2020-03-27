@@ -45,7 +45,7 @@ int game_loop(game_t *game)
     while (can_fall) {
         display_game_info(game->info, game->clock, 10, 20);
         tetrimino_fall(game->current_tetrimino, &(game->clock));
-        tetrimino_move(game->current_tetrimino, game->grid);
+        execute_input(game->current_tetrimino, game->grid);
         can_fall = tetrimino_can_fall(game->current_tetrimino, game->grid);
         if (can_fall == false)
             grid_put_tetrimino(game->grid, game->current_tetrimino);
