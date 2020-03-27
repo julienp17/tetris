@@ -9,6 +9,7 @@
 #include "tetrimino.h"
 #include "grid.h"
 #include "display.h"
+#include "tetris.h"
 
 int execute_input(tetrimino_t *tetrimino, grid_t *grid)
 {
@@ -19,14 +20,13 @@ int execute_input(tetrimino_t *tetrimino, grid_t *grid)
         return (ERR);
     clear_zone(tetrimino->pos.y, tetrimino->pos.x,
                 tetrimino->size.y, tetrimino->size.x);
-    if (key == KEY_LEFT && tetrimino->pos.x - 1 >= grid->pos.x)
+    if (key == KEY_LEFT && tetrimino_can_move(tetrimino, grid, -1))
         tetrimino->pos.x--;
-    if (key == KEY_RIGHT && tetrimino->pos.x + tetrimino->size.x + 1
-                            <= grid->pos.x + grid->size.x)
+    if (key == KEY_RIGHT && tetrimino_can_move(tetrimino, grid, 1))
         tetrimino->pos.x++;
     if (key == KEY_DOWN)
         tetrimino->pos.y++;
-    if (key == KEY_UP)
+    if (key == KEY_UP && tetrimino_can_rotate(tetrimino, grid))
         tetrimino_rotate(tetrimino);
     tetrimino_display(tetrimino);
     return (0);
