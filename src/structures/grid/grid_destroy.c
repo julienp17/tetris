@@ -10,7 +10,7 @@
 
 void grid_destroy(grid_t *grid)
 {
-    for (uint row = 0 ; row < grid->height ; row++)
+    for (int row = 0 ; row < grid->size.y ; row++)
         free(grid->cells[row]);
     free(grid->cells);
     free(grid);
