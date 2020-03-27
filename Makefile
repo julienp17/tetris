@@ -21,23 +21,23 @@ SRC_F		=	tetris.c \
 				display_next_tetrimino.c \
 				display_box.c \
 				display_game_info.c \
+				tetrimino_can_fall.c \
 				options/print_help.c \
 				file_reading/get_file_buffer.c \
 				file_reading/get_file_lines.c \
 				file_reading/get_file_size.c \
 				file_reading/get_nb_files_in_dir.c \
+				file_reading/get_pretty_filename.c \
 				structures/game/game_create.c \
 				structures/game/game_info_create.c \
 				structures/game/game_destroy.c \
-				structures/game/game_display.c \
 				structures/grid/grid_create.c \
 				structures/grid/grid_destroy.c \
 				structures/grid/grid_display.c \
+				structures/grid/grid_put_tetrimino.c \
 				structures/tetrimino/tetrimino_create_from_file.c \
 				structures/tetrimino/tetrimino_destroy.c \
 				structures/tetrimino/tetrimino_display.c \
-				structures/tetrimino/tetrimino_can_fall.c \
-				structures/tetrimino/tetrimino_rotate.c \
 				structures/tetrimino/tetrimino_shape_create.c \
 				structures/tetrimino/tetrimino_shape_dup.c \
 
