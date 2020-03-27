@@ -18,8 +18,9 @@ void tetrimino_display(tetrimino_t *tetrimino)
                 addch(' ');
                 attroff(COLOR_PAIR(tetrimino->color));
             } else {
-                move(tetrimino->pos.y + row, tetrimino->pos.x + col);
+                move(tetrimino->pos.y + row, tetrimino->pos.x + col + 1);
             }
         }
     }
+    refresh();
 }
