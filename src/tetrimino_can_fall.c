@@ -9,16 +9,12 @@
 #include <ncurses.h>
 #include "tetrimino.h"
 #include "grid.h"
-#include <stdio.h>
 
 static bool collided(tetrimino_t *tetrimino, grid_t *grid, int row, int col);
 
 bool tetrimino_can_fall(tetrimino_t *tetrimino, grid_t *grid)
 {
-    int y = 0;
-
-    y = getcury(stdscr);
-    if (y + tetrimino->size.y >= grid->pos.y + grid->size.y)
+    if (tetrimino->pos.y + tetrimino->size.y >= grid->pos.y + grid->size.y)
         return (false);
     for (int row = 0 ; row < tetrimino->size.y ; row++)
         for (int col = 0 ; col < tetrimino->size.x ; col++)
@@ -29,14 +25,14 @@ bool tetrimino_can_fall(tetrimino_t *tetrimino, grid_t *grid)
 
 static bool collided(tetrimino_t *tetrimino, grid_t *grid, int row, int col)
 {
-    int y = 0;
-    int x = 0;
+    vec_t cell_below;
 
-    getyx(stdscr, y, x);
+    cell_below.x = tetrimino->pos.x - grid->pos.x + col;
+    cell_below.y = tetrimino->pos.y - grid->pos.y + row + 1;
     return (
         tetrimino->shape[row][col] == tetrimino->color
-        && row + 1 < tetrimino->size.y
-        && tetrimino->shape[row + 1][col] == COLOR_BLACK
-        && grid->cells[grid->pos.y + y + row][grid->pos.x + x + col] != 0
+        && (row + 1 >= tetrimino->size.y
+        || tetrimino->shape[row + 1][col] == COLOR_BLACK)
+        && grid->cells[cell_below.y][cell_below.x] != 0
     );
 }
