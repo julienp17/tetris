@@ -13,7 +13,7 @@
 void display_game_info(game_info_t *game_info, clock_t game_clock, int y, int x)
 {
     mvprintw(y, x, "Game info");
-    display_box(y + 1, x, 10, 20);
+    display_box(y + 1, x, 9, 19);
     mvprintw(y + 2, x + 1, "High Score : %d", game_info->high_score);
     mvprintw(y + 4, x + 1, "Score : %d", game_info->score);
     mvprintw(y + 6, x + 1, "Level : %d", game_info->level);
