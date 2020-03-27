@@ -10,19 +10,15 @@
 
 void tetrimino_display(tetrimino_t *tetrimino)
 {
-    int y = 0;
-    int x = 0;
-
-    getyx(stdscr, y, x);
     for (uint row = 0 ; row < tetrimino->square_size ; row++) {
-        move(y + row, x);
+        move(tetrimino->pos.y + row, tetrimino->pos.x);
         for (uint col = 0 ; col < tetrimino->square_size ; col++) {
             if (tetrimino->shape[row][col] == tetrimino->color) {
                 attron(COLOR_PAIR(tetrimino->color));
                 addch(' ');
                 attroff(COLOR_PAIR(tetrimino->color));
             } else {
-                addch(' ');
+                move(tetrimino->pos.y + row, tetrimino->pos.x + col);
             }
         }
     }
