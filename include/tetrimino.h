@@ -28,7 +28,9 @@
         shape_t shape;
     } tetrimino_t;
 
+    tetrimino_t *tetrimino_create(void);
     tetrimino_t *tetrimino_create_from_file(char const *filename);
+    tetrimino_t *tetrimino_dup(tetrimino_t const *tetrimino);
     void tetrimino_destroy(tetrimino_t *tetrimino);
 
     shape_t tetrimino_shape_create(vec_t size);
