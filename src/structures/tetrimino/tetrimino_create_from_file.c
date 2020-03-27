@@ -18,11 +18,9 @@ tetrimino_t *tetrimino_create_from_file(char const *filename)
     tetrimino_t *tetrimino = NULL;
     char **file_lines = NULL;
 
-    tetrimino = malloc(sizeof(tetrimino_t));
-    if (tetrimino == NULL) {
-        my_puterr("Couldn't allocate memory for tetrimino structure.\n");
+    tetrimino = tetrimino_create();
+    if (tetrimino == NULL)
         return (NULL);
-    }
     file_lines = get_file_lines(filename);
     if (file_lines == NULL)
         return (NULL);
