@@ -9,6 +9,7 @@
     #define GRID_H_
 
     #include "vector.h"
+    #include "tetrimino.h"
 
     typedef unsigned int uint;
     typedef unsigned char cell_t;
@@ -20,5 +21,7 @@
 
     grid_t *grid_create(vec_t pos, vec_t size);
     void grid_destroy(grid_t *grid);
+
     void grid_display(grid_t *grid);
+    void grid_put_tetrimino(grid_t *grid, tetrimino_t *tetrimino);
 #endif
