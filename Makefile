@@ -17,6 +17,7 @@ SRC_D		=	src/
 SRC_F		=	tetris.c \
 				ncurses_init.c \
 				clear_zone.c \
+				execute_input.c \
 				get_tetriminos_from_dir.c \
 				display_next_tetrimino.c \
 				display_box.c \
@@ -39,7 +40,9 @@ SRC_F		=	tetris.c \
 				structures/tetrimino/tetrimino_dup.c \
 				structures/tetrimino/tetrimino_destroy.c \
 				structures/tetrimino/tetrimino_can_fall.c \
-				structures/tetrimino/tetrimino_move.c \
+				structures/tetrimino/tetrimino_can_move.c \
+				structures/tetrimino/tetrimino_can_rotate.c \
+				structures/tetrimino/tetrimino_rotate.c \
 				structures/tetrimino/tetrimino_display.c \
 				structures/tetrimino/tetrimino_shape_create.c \
 				structures/tetrimino/tetrimino_shape_dup.c \

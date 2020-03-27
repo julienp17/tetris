@@ -10,7 +10,6 @@
 
     #include <stdbool.h>
     #include "vector.h"
-    #include "orientation_enum.h"
 
     #define MAX(nb1, nb2) ((nb1 > nb2 ? nb1 : nb2))
     #define SQUARE_CHAR     '*'
@@ -36,7 +35,7 @@
     shape_t tetrimino_shape_create(vec_t size);
     shape_t tetrimino_shape_dup(tetrimino_t const *tetrimino);
 
-    void tetrimino_rotate(tetrimino_t *tetrimino, orientation_t orientation);
+    void tetrimino_rotate(tetrimino_t *tetrimino);
     void tetrimino_display(tetrimino_t *tetrimino);
 
     tetrimino_t **get_tetriminos_from_dir(char const *dir_path);
