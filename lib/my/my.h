@@ -12,6 +12,7 @@
     void my_putstr(char const *);
     void my_puterr(char const *);
     void my_free_str_array(char **arr);
+    void my_swap_int(int *nb1, int *nb2);
 
     int my_strtol(char *str, char **endptr);
     int my_strcmp(char const *s1, char const *s2);
