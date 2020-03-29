@@ -21,6 +21,5 @@ int get_size(char *name)
         if (size[i] != ' ')
             my_putchar(size[i]);
     }
-
     return i;
 }
