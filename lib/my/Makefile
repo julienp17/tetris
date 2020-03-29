@@ -21,7 +21,12 @@ SRC		=	my_count_char.c \
 			my_strlen.c \
 			my_strcmp.c \
 			my_strdupcat.c \
-			my_strncmp.c
+			my_strncmp.c\
+			my_strcpy_a.c\
+			str_to_word_tab.c\
+			my_strdup_a.c\
+			my_put_nbr.c\
+			my_strcat.c
 
 OBJ		=	$(SRC:.c=.o)
 

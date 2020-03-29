@@ -21,12 +21,18 @@ SRC_F		=	tetris.c \
 				display_next_tetrimino.c \
 				display_box.c \
 				display_game_info.c \
+				input_change.c\
+				input_change2.c\
+				getline.c\
+				get_size.c\
+				get_color.c\
 				options/print_help.c \
 				options/print_debug_mode.c\
 				file_reading/get_file_buffer.c \
 				file_reading/get_file_lines.c \
 				file_reading/get_file_size.c \
 				file_reading/get_nb_files_in_dir.c \
+				file_reading/get_file_name.c\
 				structures/game/game_create.c \
 				structures/game/game_info_create.c \
 				structures/game/game_destroy.c \

@@ -1,6 +1,12 @@
 {
     "files.associations": {
         "my.h": "c",
-        "tetris.h": "c"
+        "tetris.h": "c",
+        "debug.h": "c",
+        "stdio.h": "c",
+        "stdlib.h": "c",
+        "stdbool.h": "c",
+        "dirent.h": "c",
+        "unistd.h": "c"
     }
 }

@@ -35,5 +35,4 @@
     void display_next_tetrimino(tetrimino_t *tetrimino, int y, int x);
     void display_game_info(game_info_t *game_info, clock_t game_clock,
                             int y, int x);
-    // bool debug_mod_disp_key(int ac, char **av, debug_info_t *info);
 #endif

@@ -27,6 +27,7 @@ char *get_file_buffer(char const *filepath)
         return (NULL);
     }
     buffer[file_size] = '\0';
+
     close(fd);
     return (buffer);
 }

@@ -14,10 +14,12 @@ debug_t *basic_input(void)
 
     info = malloc(sizeof(debug_t));
 
-    info->drop = "x";
-    info->key_turn = "(space)";
-    info->pause = "p";
-    info->quit = "q";
+    info->left_key = 'a';
+    info->right_key = 'e';
+    info->drop = 'x';
+    info->key_turn = 't';
+    info->pause = 'p';
+    info->quit = 'q';
 
     return info;
 }
