@@ -33,6 +33,7 @@ int main(int ac, char **av)
 {
     if (print_help(ac, av))
         return (0);
+    srand(time(NULL));
     if (ac != 1 && debug_check(av) == 1) {
         debug_mod_disp_key(av);
         drop_change(av);
@@ -42,6 +43,5 @@ int main(int ac, char **av)
         tetris();
     } else
         tetris();
-    srand(time(NULL));
     return (0);
 }
