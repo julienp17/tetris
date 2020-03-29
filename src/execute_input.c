@@ -6,6 +6,7 @@
 */
 
 #include <ncurses.h>
+#include <stdlib.h>
 #include "tetrimino.h"
 #include "grid.h"
 #include "display.h"
@@ -18,6 +19,10 @@ int execute_input(tetrimino_t *tetrimino, grid_t *grid)
     key = getch();
     if (key == ERR)
         return (ERR);
+    if (key == 'q') {
+        endwin();
+        exit(0);
+    }
     clear_zone(tetrimino->pos.y, tetrimino->pos.x,
                 tetrimino->size.y, tetrimino->size.x);
     if (key == KEY_LEFT && tetrimino_can_move(tetrimino, grid, -1))
