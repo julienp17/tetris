@@ -24,4 +24,5 @@
 
     void grid_display(grid_t *grid);
     void grid_put_tetrimino(grid_t *grid, tetrimino_t *tetrimino);
+    int grid_clear_lines(grid_t *grid);
 #endif

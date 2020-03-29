@@ -28,12 +28,15 @@ SRC_F		=	tetris.c \
 				file_reading/get_file_size.c \
 				file_reading/get_nb_files_in_dir.c \
 				file_reading/get_pretty_filename.c \
+				file_reading/write_file.c \
 				structures/game/game_create.c \
 				structures/game/game_info_create.c \
+				structures/game/game_refresh.c \
 				structures/game/game_destroy.c \
 				structures/grid/grid_create.c \
 				structures/grid/grid_destroy.c \
 				structures/grid/grid_display.c \
+				structures/grid/grid_clear_lines.c \
 				structures/grid/grid_put_tetrimino.c \
 				structures/tetrimino/tetrimino_create.c \
 				structures/tetrimino/tetrimino_create_from_file.c \

@@ -9,6 +9,7 @@ CC 		= 	gcc
 
 SRC		=	my_count_char.c \
 			my_atoi.c \
+			my_pow.c \
 			my_count_until_sep.c \
 			my_free_str_array.c \
 			my_putchar.c \

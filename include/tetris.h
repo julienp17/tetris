@@ -28,6 +28,9 @@
 
     int tetris(void);
     int ncurses_init(void);
+
+    int game_loop(game_t *game);
+    void refresh_game(game_t *game);
     int execute_input(tetrimino_t *tetrimino, grid_t *grid);
 
     bool tetrimino_can_fall(tetrimino_t *tetrimino, grid_t *grid);
