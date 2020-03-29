@@ -50,7 +50,7 @@ SRC_F		=	tetris.c \
 SRC_UT		=	$(addprefix $(SRC_UT_D), $(SRC_UT_F))
 OBJ_UT		=	$(SRC_UT:.c=.o)
 SRC_UT_D	=	tests/
-SRC_UT_F	=
+SRC_UT_F	=	structures/tetrimino/test_tetrimino_create.c \
 
 INC			=	-I./include -I./include/enumerations -I./include/structures
 
