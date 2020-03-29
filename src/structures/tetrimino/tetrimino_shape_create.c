@@ -9,12 +9,12 @@
 #include "tetrimino.h"
 #include "my.h"
 
-shape_t tetrimino_shape_create(uint width, uint height)
+shape_t tetrimino_shape_create(vec_t size)
 {
     shape_t shape = NULL;
     uchar square_size = 0;
 
-    square_size = MAX(width, height);
+    square_size = MAX(size.x, size.y);
     shape = malloc(sizeof(uchar *) * (square_size + 1));
     if (shape == NULL) {
         my_puterr("Couldn't allocate memory for tetrimino shape array.\n");

@@ -16,16 +16,13 @@ void display_box(int y, int x, int height, int width)
         mvaddch(y + 1 + i, x, '|');
         mvaddch(y + 1 + i, x + 1 + width, '|');
     }
-    display_border(y + height, x, width);
-    move(y, x);
+    display_border(y + height + 1, x, width);
 }
 
 static void display_border(int y, int x, int width)
 {
-    move(y, x);
-    addch('+');
+    mvaddch(y, x, '+');
     for (int i = 0 ; i < width ; i++)
         addch('-');
     addch('+');
-    move(y, x);
 }

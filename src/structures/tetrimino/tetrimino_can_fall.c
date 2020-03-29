@@ -9,42 +9,30 @@
 #include <ncurses.h>
 #include "tetrimino.h"
 #include "grid.h"
-#include <stdio.h>
 
-static bool collided(tetrimino_t *tetrimino, grid_t *grid, uint row, uint col);
+static bool collided(tetrimino_t *tetrimino, grid_t *grid, int row, int col);
 
 bool tetrimino_can_fall(tetrimino_t *tetrimino, grid_t *grid)
 {
-    uchar square_size = 0;
-    int y = 0;
-    int _ = 0;
-
-    getyx(stdscr, y, _);
-    (void)_;
-    if (y - 1 + tetrimino->height >= (int)grid->height)
+    if (tetrimino->pos.y + tetrimino->size.y >= grid->pos.y + grid->size.y)
         return (false);
-    square_size = MAX(tetrimino->height, tetrimino->width);
-    for (uint row = 0 ; row < square_size ; row++)
-        for (uint col = 0 ; col < square_size ; col++)
+    for (int row = 0 ; row < tetrimino->size.y ; row++)
+        for (int col = 0 ; col < tetrimino->size.x ; col++)
             if (collided(tetrimino, grid, row, col))
                 return (false);
     return (true);
 }
 
-static bool collided(tetrimino_t *tetrimino, grid_t *grid, uint row, uint col)
+static bool collided(tetrimino_t *tetrimino, grid_t *grid, int row, int col)
 {
-    int y = 0;
-    int x = 0;
-    uchar square_size = 0;
+    vec_t cell_below;
 
-    square_size = MAX(tetrimino->height, tetrimino->width);
-    getyx(stdscr, y, x);
-    y--;
-    x--;
+    cell_below.x = tetrimino->pos.x - grid->pos.x + col;
+    cell_below.y = tetrimino->pos.y - grid->pos.y + row + 1;
     return (
         tetrimino->shape[row][col] == tetrimino->color
-        && row + 1 < square_size
-        && tetrimino->shape[row + 1][col] == COLOR_BLACK
-        && grid->cells[y + row][x + col] != COLOR_BLACK
+        && (row + 1 >= tetrimino->size.y
+        || tetrimino->shape[row + 1][col] == COLOR_BLACK)
+        && grid->cells[cell_below.y][cell_below.x] != 0
     );
 }

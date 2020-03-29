@@ -7,23 +7,21 @@
 
 #include <ncurses.h>
 #include "tetrimino.h"
+#include "display.h"
 
-void tetrimino_display(tetrimino_t *tetrimino, int y, int x)
+void tetrimino_display(tetrimino_t *tetrimino)
 {
-    uchar square_size = 0;
-
-    square_size = MAX(tetrimino->height, tetrimino->width);
-    for (uint row = 0 ; row < square_size ; row++) {
-        move(y + row, x);
-        for (uint col = 0 ; col < square_size ; col++) {
+    for (uint row = 0 ; row < tetrimino->square_size ; row++) {
+        move(tetrimino->pos.y + row, tetrimino->pos.x);
+        for (uint col = 0 ; col < tetrimino->square_size ; col++) {
             if (tetrimino->shape[row][col] == tetrimino->color) {
                 attron(COLOR_PAIR(tetrimino->color));
                 addch(' ');
                 attroff(COLOR_PAIR(tetrimino->color));
             } else {
-                addch(' ');
+                move(tetrimino->pos.y + row, tetrimino->pos.x + col + 1);
             }
         }
     }
-    move(y, x);
+    refresh();
 }

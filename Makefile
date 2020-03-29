@@ -17,6 +17,7 @@ SRC_D		=	src/
 SRC_F		=	tetris.c \
 				ncurses_init.c \
 				clear_zone.c \
+				execute_input.c \
 				get_tetriminos_from_dir.c \
 				display_next_tetrimino.c \
 				display_box.c \
@@ -33,25 +34,34 @@ SRC_F		=	tetris.c \
 				file_reading/get_file_size.c \
 				file_reading/get_nb_files_in_dir.c \
 				file_reading/get_file_name.c\
+				file_reading/get_pretty_filename.c \
+				file_reading/write_file.c \
 				structures/game/game_create.c \
 				structures/game/game_info_create.c \
+				structures/game/game_refresh.c \
 				structures/game/game_destroy.c \
-				structures/game/game_display.c \
 				structures/grid/grid_create.c \
 				structures/grid/grid_destroy.c \
 				structures/grid/grid_display.c \
+				structures/grid/grid_clear_lines.c \
+				structures/grid/grid_put_tetrimino.c \
+				structures/tetrimino/tetrimino_create.c \
 				structures/tetrimino/tetrimino_create_from_file.c \
+				structures/tetrimino/tetrimino_dup.c \
 				structures/tetrimino/tetrimino_destroy.c \
-				structures/tetrimino/tetrimino_display.c \
 				structures/tetrimino/tetrimino_can_fall.c \
+				structures/tetrimino/tetrimino_can_move.c \
+				structures/tetrimino/tetrimino_can_rotate.c \
 				structures/tetrimino/tetrimino_rotate.c \
+				structures/tetrimino/tetrimino_display.c \
 				structures/tetrimino/tetrimino_shape_create.c \
 				structures/tetrimino/tetrimino_shape_dup.c \
 				structures/debug/debug_init.c
 SRC_UT		=	$(addprefix $(SRC_UT_D), $(SRC_UT_F))
 OBJ_UT		=	$(SRC_UT:.c=.o)
 SRC_UT_D	=	tests/
-SRC_UT_F	=
+SRC_UT_F	=	structures/tetrimino/test_tetrimino_create.c \
+				structures/tetrimino/test_tetrimino_create_from_file.c \
 
 INC			=	-I./include -I./include/enumerations -I./include/structures
 

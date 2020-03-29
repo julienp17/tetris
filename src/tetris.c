@@ -5,22 +5,23 @@
 ** tetris
 */
 
+#include <stdbool.h>
 #include <ncurses.h>
 #include <time.h>
 #include <stdlib.h>
 #include "game.h"
 #include "my.h"
 #include "tetris.h"
+#include "display.h"
 
-int game_loop(game_t *game);
-int tetrimino_fall(tetrimino_t *tetrimino, clock_t *game_clock);
-void refresh_game(game_t *game);
+static int tetrimino_fall(tetrimino_t *tetrimino,clock_t *game_clock,int level);
+static void clear_lines(grid_t *grid, game_info_t *info);
 
 int tetris(void)
 {
     game_t *game = NULL;
 
-    game = game_create(20, 10, 1);
+    game = game_create(vec(10, 20), 1);
     if (game == NULL)
         return (-1);
     if (ncurses_init() == -1)
@@ -33,60 +34,48 @@ int tetris(void)
 
 int game_loop(game_t *game)
 {
-
-
-    refresh_game(game);
+    game_refresh(game);
+    if (tetrimino_can_fall(game->current_tetrimino, game->grid) == false)
+        return (-1);
     while (tetrimino_can_fall(game->current_tetrimino, game->grid)) {
         display_game_info(game->info, game->clock, 10, 20);
-        tetrimino_fall(game->current_tetrimino, &(game->clock));
-        refresh();
-        // if (tetrimino_move(current_tetrimino))
-        //     game_display(game);
+        tetrimino_fall(game->current_tetrimino, &(game->clock),
+                        game->info->level);
+        execute_input(game->current_tetrimino, game->grid);
     }
-    game->current_tetrimino = game->next_tetrimino;
-    game->next_tetrimino = game->tetriminos[rand() % game->info->nb_tetriminos];
+    grid_put_tetrimino(game->grid, game->current_tetrimino);
+    clear_lines(game->grid, game->info);
     return (0);
 }
 
-void refresh_game(game_t *game)
+static int tetrimino_fall(tetrimino_t *tetrimino, clock_t *game_clock,int level)
 {
-    grid_display(game->grid, 0, 0);
-    display_next_tetrimino(game->next_tetrimino, 0, 20);
-    move(1, game->grid->width / 2);
-    tetrimino_display(game->current_tetrimino, 1, game->grid->width / 2);
-    refresh();
-}
-
-int tetrimino_fall(tetrimino_t *tetrimino, clock_t *game_clock)
-{
-    int y = 0;
-    int x = 0;
+    int delay = 0;
     clock_t sec_elapsed = 0;
 
-    sec_elapsed = (clock() / CLOCKS_PER_SEC);
-    if ((sec_elapsed - (*game_clock)) >= REFRESH_TIME_SEC) {
-        (*game_clock) += REFRESH_TIME_SEC;
-        getyx(stdscr, y, x);
-        clear_zone(y, x, y + tetrimino->height, x + tetrimino->width);
-        move(y + 1, x);
-        tetrimino_display(tetrimino, y + 1, x);
+    sec_elapsed = (clock() / 1000);
+    delay = REFRESH_TIME - ((level - 1) * 100);
+    if (delay < 500)
+        delay = 500;
+    if ((sec_elapsed - (*game_clock)) >= delay) {
+        (*game_clock) += REFRESH_TIME;
+        clear_zone(tetrimino->pos.y, tetrimino->pos.x,
+                    tetrimino->size.y, tetrimino->size.x);
+        tetrimino->pos.y++;
+        tetrimino_display(tetrimino);
     }
     return (0);
 }
 
-// int tetrimino_move()
-// {
-//     int y = 0;
-//     int x = 0;
-//     int key = 0;
+static void clear_lines(grid_t *grid, game_info_t *info)
+{
+    int lines_removed = 0;
 
-//     key = getch();
-//     if (key == ERR)
-//         return (ERR);
-//     getyx(stdscr, y, x);
-//     if (key == KEY_LEFT && x > 1)
-//         move(y, x - 1);
-//     else if (key == KEY_RIGHT && x + 2 < (int)game->grid->width)
-//         move(y, x + 1);
-//     return (0);
-// }
+    info->score += 20;
+    lines_removed = grid_clear_lines(grid);
+    if (lines_removed > 0) {
+        info->lines_removed += lines_removed;
+        info->score += my_pow(2, lines_removed - 1) * 100;
+        info->level = 1 + (int)(info->score / 1000);
+    }
+}

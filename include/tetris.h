@@ -29,10 +29,14 @@
     int tetris(void);
     int ncurses_init(void);
 
+    int game_loop(game_t *game);
+    void refresh_game(game_t *game);
+    int execute_input(tetrimino_t *tetrimino, grid_t *grid);
+
+    bool tetrimino_can_fall(tetrimino_t *tetrimino, grid_t *grid);
+    bool tetrimino_can_rotate(tetrimino_t *tetrimino, grid_t *grid);
+    bool tetrimino_can_move(tetrimino_t *tetrimino, grid_t *grid, int offset);
+    int tetrimino_move(tetrimino_t *tetrimino, grid_t *grid);
+
     bool print_help(int ac, char **av);
-    void clear_zone(int y_beg, int x_beg, int y_end, int x_end);
-    void display_box(int y, int x, int height, int width);
-    void display_next_tetrimino(tetrimino_t *tetrimino, int y, int x);
-    void display_game_info(game_info_t *game_info, clock_t game_clock,
-                            int y, int x);
 #endif

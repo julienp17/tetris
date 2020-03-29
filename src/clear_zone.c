@@ -7,18 +7,13 @@
 
 #include <ncurses.h>
 
-void clear_zone(int y_beg, int x_beg, int y_end, int x_end)
+void clear_zone(int y, int x, int height, int width)
 {
-    int previous_y = 0;
-    int previous_x = 0;
-
-    getyx(stdscr, previous_y, previous_x);
     attron(COLOR_PAIR(0));
-    for (int row = 0 ; row < (y_end - y_beg) ; row++) {
-        move(y_beg + row, x_beg);
-        for (int col = 0 ; col < (x_end - x_beg) ; col++)
+    for (int row = 0 ; row < height ; row++) {
+        move(y + row, x);
+        for (int col = 0 ; col < width ; col++)
             addch(' ');
     }
     attroff(COLOR_PAIR(0));
-    move(previous_y, previous_x);
 }
