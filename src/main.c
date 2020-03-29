@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "tetris.h"
+#include "debug.h"
 
 int main(int ac, char **av)
 {

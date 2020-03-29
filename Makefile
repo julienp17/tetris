@@ -22,6 +22,7 @@ SRC_F		=	tetris.c \
 				display_box.c \
 				display_game_info.c \
 				options/print_help.c \
+				options/print_debug_mode.c\
 				file_reading/get_file_buffer.c \
 				file_reading/get_file_lines.c \
 				file_reading/get_file_size.c \
@@ -40,7 +41,7 @@ SRC_F		=	tetris.c \
 				structures/tetrimino/tetrimino_rotate.c \
 				structures/tetrimino/tetrimino_shape_create.c \
 				structures/tetrimino/tetrimino_shape_dup.c \
-
+				structures/debug/debug_init.c
 SRC_UT		=	$(addprefix $(SRC_UT_D), $(SRC_UT_F))
 OBJ_UT		=	$(SRC_UT:.c=.o)
 SRC_UT_D	=	tests/

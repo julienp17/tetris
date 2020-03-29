@@ -21,6 +21,7 @@ SRC		=	my_count_char.c \
 			my_strlen.c \
 			my_strcmp.c \
 			my_strdupcat.c \
+			my_strncmp.c
 
 OBJ		=	$(SRC:.c=.o)
 
