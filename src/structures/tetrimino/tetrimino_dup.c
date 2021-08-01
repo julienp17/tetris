@@ -6,7 +6,6 @@
 */
 
 #include <stdlib.h>
-#include <SFML/Graphics.h>
 #include "tetrimino.h"
 #include "my.h"
 
